@@ -35,11 +35,8 @@ Matrix::Matrix(const Matrix& obj)
 	std::cout << "Copy Constructor:" << std::endl;
 }
 
-Matrix::Matrix(Matrix&& obj)
+Matrix::Matrix(Matrix&& obj) : rows_ {obj.rows_}, cols_ {obj.cols_}, data_ {obj.data_}
 {
-	rows_ = obj.rows_;
-	cols_ = obj.cols_;
-	data_ = obj.data_;
 	obj.rows_ = 0;
 	obj.cols_ = 0;
 	obj.data_ = nullptr;
@@ -95,8 +92,8 @@ Matrix& Matrix::operator=(Matrix&& obj)
 	obj.cols_ = 0;
 	obj.data_ = nullptr;
 
-	return *this;
 	std::cout << "Move Assignment operator:" << std::endl;
+	return *this;
 }
 
 Matrix::~Matrix()
@@ -110,6 +107,7 @@ Matrix::~Matrix()
 		delete []data_;
 		data_ = nullptr;
 	}
+	std::cout << "Destructor:" << std::endl; 
 }
 
 void Matrix::fill(size_t row, size_t col)
