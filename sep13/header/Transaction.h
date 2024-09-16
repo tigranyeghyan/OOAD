@@ -1,20 +1,16 @@
 //Transaction
 
 #pragma once
-
 #include "Account.h"
 
 class Transaction
 {
-
-
 public:
-	void log();
-
+	void log() const;
+	Transaction(Account *from, Account *to, double amount, const std::string &type);
 private:
-	Account* fromAccount;
-	Account* toAccount;
-	double amount;
-	std::string transactionType;
-
+	Account* m_fromAccount;
+	Account* m_toAccount;
+	double m_amount;
+	std::string m_transactionType;
 };

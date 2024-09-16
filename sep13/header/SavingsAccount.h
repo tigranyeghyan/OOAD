@@ -3,22 +3,25 @@
 #pragma once
 
 #include "Account.h"
+#include "Transaction.h"
+#include <vector>
+#include <string>
 
 class SavingsAccount : public Account
 {
 public:
+	SavingsAccount(int number, double balance, const std::string& type, double rate);
+	SavingsAccount(const SavingsAccount &);
+	~SavingsAccount() = default;
+
+	void setInterestRate(double rate);
+	double getInterestRate() const;
+
 	void deposit(double amount) override;
 	void withdraw(double amount) override;
 	void transfer(Account& destination, double amount) override;
 	void showBalance() const override;
 	std::string getAccountType() const override;
-			
-	SavingsAccount(const SavingsAccount &) = default;
-	SavingsAccount(SavingsAccount &&) = default;
-	SavingsAccount& operator=(const SavingsAccount &) = default;
-	SavingsAccount& operator=(SavingsAccount &&) = default;
-	~SavingsAccount() = default;
-
 private:
 	double interestRate;
 };
