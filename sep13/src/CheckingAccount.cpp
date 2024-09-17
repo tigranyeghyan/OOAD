@@ -9,15 +9,7 @@ CheckingAccount::CheckingAccount(double balance, const std::string& type, double
 	accounts.push_back(this);
 }
 
-CheckingAccount::CheckingAccount(const CheckingAccount &other)
-{
-	m_balance = other.m_balance;
-	m_accountType = other.m_accountType;
-	m_accountTransactions = other.m_accountTransactions;
-	overdraftLimit = other.overdraftLimit;
-}
-
-void setOverdraftLimit(double limit)
+void CheckingAccount::setOverdraftLimit(double limit)
 {
 	if (limit >= 0)
 	{
@@ -69,7 +61,7 @@ void CheckingAccount::withdraw(double amount)
 	}
 }
 
-void CheckingAccount::transfer(int identity, double amount)
+void CheckingAccount::transfer(int id, double amount)
 {
 	Account* dest = nullptr;
 	if(id < accounts.size())
@@ -81,7 +73,7 @@ void CheckingAccount::transfer(int identity, double amount)
 		
 		logTransaction(this, dest, amount, "Transfer");
 
-		dest -> m_balance += amount;
+		dest -> setBalance(getBalance() + amount);
 		dest -> logTransaction(this, dest, amount, "Transfer");
 
 		m_balance -= amount;

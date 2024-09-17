@@ -4,24 +4,25 @@
 #include "Transaction.h"
 #include "TransactionManager.h"
 #include <vector>
-
+class Transaction;
 class Account : public TransactionManager
 {
 public:
 	Account(double balance, const std::string& type);
 
-	void logTransaction(Account *from, Account *to, double amount, const std::string& type);
-	void showTransactionHistory() const;
+	void logTransaction(Account *from, Account *to, double amount, const std::string& type) override final;
+	void showTransactionHistory() const override final;
 
 	virtual void deposit(double amount) = 0;
 	virtual void withdraw(double amount) = 0;
 	virtual void transfer(int id, double amount) = 0;
+	virtual std::string getAccountType() const = 0;
 	virtual void showBalance() const = 0;
 	
 	int getAccountNumber() const;
-	virtual std::string getAccountType() const = 0;
-	
-	virtual ~Account();
+	void setBalance(double amount);
+	double getBalance() const;
+
 protected:
 	int m_accountNumber;
 	double m_balance;

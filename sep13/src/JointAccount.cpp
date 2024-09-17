@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "../header/JointAccount.h"
+#include "../header/Customer.h"
 
 
 JointAccount::JointAccount(double balance, const std::string& type) : Account(balance, type) 
@@ -9,34 +10,19 @@ JointAccount::JointAccount(double balance, const std::string& type) : Account(ba
 	accounts.push_back(this);
 }
 
-JointAccount::JointAccount(const JointAccount &other)
-{
-	m_balance = other.m_balance;
-	m_accountType = other.m_accountType;
-	m_accountTransactions = other.m_accountTransactions;
-	jointOwners = other.jointOwners;
-}
 
-
-void JointAccount::addCustomer(const std::string& customer_name)
+void JointAccount::addCustomer(Customer* customer)
 {
-	for(auto customer : customer_list)
-	{
-		if(customer -> getCustomerName() == customer_name)
-		{
-			jointOwners.push_back(customer);	
-			return; 
-		}
-	}
+	jointOwners.push_back(customer);	
 	std::cout << "Customer Not Found" << std::endl;
 }
 
 void JointAccount::showCustomers() const
 {
-	for(int i, auto customers : jointOwners)
+	for(int i; auto customer : jointOwners)
 	{
 		std::cout << i++ << "Customer:" << std::endl; 
-		customers -> showCustomerInfo();
+		customer -> showCustomerInfo();
 	}
 }
 
@@ -76,7 +62,7 @@ void JointAccount::transfer(int id, double amount)
 	if(amount <= m_balance && amount > 0 && dest != nullptr)
 	{
 		logTransaction(this, dest , amount, "Transfer");
-		dest -> m_balance += amount;
+		dest -> setBalance(getBalance() + amount);
 		dest -> logTransaction(this, dest, amount, "Transfer");
 		m_balance -= amount;
 	}
@@ -91,7 +77,7 @@ void JointAccount::showBalance() const
 	std::cout << "Balance = " << m_balance << std::endl; 
 }
 
-std::string SavingsAccount::getAccountType() const
+std::string JointAccount::getAccountType() const
 {
 	return m_accountType;
 }

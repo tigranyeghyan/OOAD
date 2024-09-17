@@ -9,18 +9,9 @@ SavingsAccount::SavingsAccount(double balance, const std::string& type, double r
 	accounts.push_back(this);
 }
 
-SavingsAccount::SavingsAccount(const SavingsAccount &other)
-{
-	m_balance = other.m_balance;
-	m_accountType = other.m_accountType;
-	m_accountTransactions = other.m_accountTransactions;
-	interestRate = other.interestRate;
-}
-
-
 void SavingsAccount::setInterestRate(double rate)
 {
-	if (limit > 0)
+	if (rate > 0)
 	{
 		interestRate = rate;
 	}
@@ -65,7 +56,7 @@ void SavingsAccount::withdraw(double amount)
 	}
 }
 
-void SavingsAccount::transfer(int identity, double amount)
+void SavingsAccount::transfer(int id, double amount)
 {
 	Account* dest = nullptr;
 	if(id < accounts.size())
@@ -76,7 +67,7 @@ void SavingsAccount::transfer(int identity, double amount)
 	{
 		m_balance += m_balance * interestRate / 100;		
 		logTransaction(this, dest, amount, "Transfer");
-		dest -> m_balance += amount;
+		dest -> setBalance(getBalance() + amount);
 		dest -> logTransaction(this, dest, amount, "Transfer");
 
 		m_balance -= amount;

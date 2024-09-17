@@ -7,14 +7,13 @@
 #include "Transaction.h"
 #include "Customer.h"
 
+class Customer;
 class JointAccount : public Account
 {
 public:
-	JointAccount(int number, double balance, const std::string& type);
-	JointAccount(const JointAccount &name);
-	~JointAccount() = default;
+	JointAccount(double balance, const std::string& type);
 	
-	void addCustomer(const std::string& name);
+	void addCustomer(Customer *customer);
 	void showCustomers() const;
 
 	void deposit(double amount) override;
@@ -24,5 +23,5 @@ public:
 	std::string getAccountType() const override;
 
 private:
-	std::vector<std::string> jointOwners;
+	std::vector<Customer*> jointOwners;
 };

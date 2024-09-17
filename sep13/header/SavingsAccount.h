@@ -10,9 +10,7 @@
 class SavingsAccount : public Account
 {
 public:
-	SavingsAccount(int number, double balance, const std::string& type, double rate);
-	SavingsAccount(const SavingsAccount &);
-	~SavingsAccount() = default;
+	SavingsAccount(double balance, const std::string& type, double rate);
 
 	void setInterestRate(double rate);
 	double getInterestRate() const;

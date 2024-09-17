@@ -18,7 +18,7 @@ void Account::showTransactionHistory() const
 {
 	for (int i = 0; i < m_accountTransactions.size(); ++i)
 	{
-		m_accountTransactions -> log();
+		m_accountTransactions[i] -> log();
 		std::cout << "-----------------------" << std::endl;
 	}
 }
@@ -28,6 +28,16 @@ int Account::getAccountNumber() const
 	return m_accountNumber;
 }
 
-static std::vector<int> Account::identity = {}; 
+void Account::setBalance(double amount)
+{
+	m_balance = amount;
+}
 
-static std::vector<Account*> Account::acounts = {};
+double Account::getBalance() const
+{
+	return m_balance;
+}
+
+std::vector<int> Account::identity = {}; 
+
+std::vector<Account*> Account::accounts = {};

@@ -10,9 +10,7 @@
 class CheckingAccount : public Account
 {
 public:
-	CheckingAccount(int number, double balance, const std::string& type, double limit);
-	CheckingAccount(const CheckingAccount &);
-	~CheckingAccount() = default;
+	CheckingAccount(double balance, const std::string& type, double limit);
 	
 	void setOverdraftLimit(double limit);
 	double getOverdraftLimit() const; 

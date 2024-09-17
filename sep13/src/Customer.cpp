@@ -3,70 +3,51 @@
 #include <string>
 #include <limits>
 #include "../header/Customer.h"
+#include "../header/CheckingAccount.h"
+#include "../header/SavingsAccount.h"
+#include "../header/JointAccount.h"
 
 Customer::Customer(const std::string &name, const std::string &contactInfo) : m_name{name}, m_contactInfo {contactInfo} 
 {
 	std::cout << "Creating Account ..." << std::endl;
-	do 
-	{
-		addAccount();
-	}while (m_accounts.empty());
-	if(m_accounts.empty())
-	{
-		throw std::runtime_error("Account dont create!");
-	}
-	else
-	{
-		customer_list.push_back(this);
-	}
-}
-
-static std::vector<Customer*> customer_list = {};
-
-void Customer::addAccount(Account* account)
-{
 	size_t choice = 0;
 	do 
 	{
-		system("clear");
 		std::cout << "Enter Account type" << std::endl;
 		std::cout << "1 --> Checking Account:" << std::endl;
 		std::cout << "2 --> Savings Account:" << std::endl;
 		std::cout << "3 --> Joint Account:" << std::endl;
 		std::cout << "0 --> Exit:" << std::endl;
 		std::cin >> choice;
-	} while(choice <= 3);
+	} while(choice > 3);
 	switch (choice)
 	{
 		case 1:
-		{
-			system("clear");
+		{	
 			std::cout << "Creating Checking Account ..." << std::endl;		
 			size_t overdraft;
 			std::cout << "Enter Overdraft Limit: ";
 			std::cin >> overdraft;
-			CheckingAccount *ptr = new CheckingAccount(0, "CheckingAccount", overdraft);
+			Account *ptr = new CheckingAccount(0, "CheckingAccount", overdraft);
 			m_accounts.push_back(ptr);
 			std::cout << "Account Created Successfully!" << std::endl;
 			break;
 		}
 		case 2:
 		{
-			system("clear");
 			std::cout << "Creating Savings Account ..." << std::endl;
 			double rate;
 			std::cout << "Enter Interest Rate: ";
 			std::cin >> rate;
-			SavingsAccount *ptr = new SavingsAccount(0, "SavingsAccount", rate);
+			Account *ptr = new SavingsAccount(0, "SavingsAccount", rate);
 			m_accounts.push_back(ptr);
 			std::cout << "Account Created Successfully!" << std::endl;	
 			break;
 		}
 		case 3:
 		{
-			system("clear");
 			std::cout << "Creating Joint Account ..." << std::endl; 
-			JointAccount *ptr = new JointAccount(0, "JointAccount");
+			Account *ptr = new JointAccount(0, "JointAccount");
 			m_accounts.push_back(ptr);
 			std::cout << "Account Created Successfully!" << std::endl;	
 			break;			
@@ -78,7 +59,83 @@ void Customer::addAccount(Account* account)
 		}
 		default:
 		{
-			system("clear");
+
+			std::cout << "You are invalid!" << std::endl;
+			return;
+		}
+	}
+	if(m_accounts.empty())
+	{
+		throw std::runtime_error("Account dont create!");
+	}
+	else
+	{
+		customer_list.push_back(this);
+	}
+}
+
+std::string Customer::getCustomerName() const
+{
+	return m_name;
+} 
+
+std::vector<Customer*> Customer::customer_list = {};
+
+void Customer::addAccount()
+{
+	size_t choice = 0;
+	do 
+	{
+		std::cout << "Enter Account type" << std::endl;
+		std::cout << "1 --> Checking Account:" << std::endl;
+		std::cout << "2 --> Savings Account:" << std::endl;
+		std::cout << "3 --> Joint Account:" << std::endl;
+		std::cout << "0 --> Exit:" << std::endl;
+		std::cin >> choice;
+	} while(choice <= 3);
+	switch (choice)
+	{
+		case 1:
+		{
+
+			std::cout << "Creating Checking Account ..." << std::endl;		
+			size_t overdraft;
+			std::cout << "Enter Overdraft Limit: ";
+			std::cin >> overdraft;
+			Account *ptr = new CheckingAccount(0, "CheckingAccount", overdraft);
+			m_accounts.push_back(ptr);
+			std::cout << "Account Created Successfully!" << std::endl;
+			break;
+		}
+		case 2:
+		{
+
+			std::cout << "Creating Savings Account ..." << std::endl;
+			double rate;
+			std::cout << "Enter Interest Rate: ";
+			std::cin >> rate;
+			Account *ptr = new SavingsAccount(0, "SavingsAccount", rate);
+			m_accounts.push_back(ptr);
+			std::cout << "Account Created Successfully!" << std::endl;	
+			break;
+		}
+		case 3:
+		{
+
+			std::cout << "Creating Joint Account ..." << std::endl; 
+			Account *ptr = new JointAccount(0, "JointAccount");
+			m_accounts.push_back(ptr);
+			std::cout << "Account Created Successfully!" << std::endl;	
+			break;			
+		}
+		case 0:
+		{
+			std::cout<< "Exiting ..." << std::endl;
+			return; 
+		}
+		default:
+		{
+
 			std::cout << "You are invalid!" << std::endl;
 			return;
 		}
@@ -88,7 +145,7 @@ void Customer::addAccount(Account* account)
 void Customer::viewAccounts() const
 {	
 	std::cout << "My Accounts: " << std::endl;
-	for(int i, auto acc : m_accounts)
+	for(int i; auto acc : m_accounts)
 	{
 		std::cout << i + 1 << ": " << acc -> getAccountType() << std::endl; 
 		i++;
@@ -97,7 +154,7 @@ void Customer::viewAccounts() const
 
 void Customer::viewTransactionHistory() const
 {
-	for(int i, auto acc : m_accounts)
+	for(int i; auto acc : m_accounts)
 	{
 		std::cout << i + 1 << ": " << acc -> getAccountType() << std::endl; 			
 		i++;
@@ -109,7 +166,7 @@ void Customer::viewTransactionHistory() const
 
 void Customer::showCustomerInfo() const
 {	
-	std::cout  << "Name --> " << m_name <<std::endl;
+	std::cout << "Name --> " << m_name <<std::endl;
 	std::cout << "Contact Info --> " << m_contactInfo << std::endl;
 }
 
@@ -120,8 +177,7 @@ void Customer::CustomerInterface()
 		size_t chose = 0;
 		do
 		{
-			system("clear");
-			std::cout << "1 --> Chose Account: " << std::endl;
+			std::cout << "1 --> Manage Accounts: " << std::endl;
 			std::cout << "0 --> Exit: " << std::endl;
 			std::cin >> chose;
 		}while (chose > 1);
@@ -133,25 +189,26 @@ void Customer::CustomerInterface()
 		}
 		else
 		{
-			system("clear");
 			std::cout << "Chose Account: " << std::endl;
 			size_t acc_i;
 			size_t i = 0;
 			for(auto acc : m_accounts) 
 			{
 				std::cout << i + 1 << " --> " << acc -> getAccountType() << "\t" << acc -> getAccountNumber() << std::endl;
+				++i;
 			}
-			do
+			std::cin >> acc_i;
+			if(acc_i > i)
 			{
-				std::cin >> acc_i;
-			} while(acc_i - 1 < i);
-
+				std::cout << "Incorrect Input" <<std::endl;
+				return;
+			}
+			acc_i -= 1;
 			std::string acc_type = m_accounts[acc_i] -> getAccountType(); 
 			size_t acc_type_num = 0;
 			size_t action = 0;
 			do
 			{
-				system("clear");
 				std::cout << "Chose Action: " << std::endl;	
 				std::cout << "1 --> Deposit:" << std::endl;
 				std::cout << "2 --> Withdraw:" << std::endl;
@@ -162,35 +219,32 @@ void Customer::CustomerInterface()
 					acc_type_num = 1;
 					std::cout << "5 --> Set Overdraft Limit: " << std::endl;
 					std::cout << "6 --> Show Overdraft Limit: " << std::endl;
-					break;
 				}
 				else if (acc_type == "SavingsAccount")
 				{
 					acc_type_num = 2;
 					std::cout << "5 --> Set Interest Rate: " << std::endl;
 					std::cout << "6 --> Show Interest Rate: " << std::endl;
-					break;	
 				}
 				else if(acc_type == "JointAccount")
 				{
 					acc_type_num = 3;
 					std::cout << "5 --> Add Customer: " << std::endl;
 					std::cout << "6 --> Show Customers: " << std::endl;
-					break;
 				}
 				else
 				{
 					throw std::runtime_error("Account Type incorrect");
 				}
 				std::cout << "0 --> Exit: " << std::endl;
-				std::cout << "Enter action: ";
+				std::cout << "Enter action: " << std::endl;
 				std::cin >> action;
 				if(action == 0)
 				{
 					std::cout << "Exiting ..." << std::endl;
 					break;
 				}
-				else if(action <= 4)
+				if(action <= 4)
 				{
 					switch (action)
 					{
@@ -238,13 +292,13 @@ void Customer::CustomerInterface()
 							if(action == 5)
 							{
 								double limit;
-								std::cout << "Enter Overdraft Limit: " << limit;
+								std::cout << "Enter Overdraft Limit: ";
 								std::cin >> limit;
-								m_accounts[acc_i] -> setOverdraftLimit(limit);
+								dynamic_cast<CheckingAccount*>(m_accounts[acc_i]) -> setOverdraftLimit(limit);
 							}
 							else if(action == 6)
 							{
-								std::cout << "Overdraft Limit: "  << m_accounts[acc_i] -> getOverdraftLimit() << std::endl;
+								std::cout << "Overdraft Limit: "  << dynamic_cast<CheckingAccount*>(m_accounts[acc_i]) -> getOverdraftLimit() << std::endl;
 							}
 							else
 							{
@@ -257,13 +311,13 @@ void Customer::CustomerInterface()
 							if(action == 5)
 							{
 								double rate;
-								std::cout << "Enter New Interest Rate: " << limit;
+								std::cout << "Enter New Interest Rate: ";
 								std::cin >> rate;
-								m_accounts[acc_i] -> getInterestRate(rate);
+								dynamic_cast<SavingsAccount*>(m_accounts[acc_i]) -> setInterestRate(rate);
 							}	
 							else if(action == 6)
 							{
-								std::cout << "Interest Rate: " << m_accounts[acc_i] -> getInterestRate() << std::endl;
+								std::cout << "Interest Rate: " << dynamic_cast<SavingsAccount*>(m_accounts[acc_i]) -> getInterestRate() << std::endl;
 							}
 							else
 							{
@@ -279,14 +333,23 @@ void Customer::CustomerInterface()
 								std::string name;
 								std::cout << "Customer name: ";
 								std::cin.clear();
-        						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-								std::cin >> name;
-								m_accounts[acc_i] -> addCustomer(name);
+        							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+								std::getline(std::cin, name);
+								for(Customer *cust : customer_list)
+								{
+									if(cust -> getCustomerName() == name)
+									{
+										dynamic_cast<JointAccount*>(m_accounts[acc_i]) -> addCustomer(cust);
+										cust -> m_accounts.push_back(m_accounts[acc_i]); 
+										std::cout << "Customer Added Successfully" << std::endl;
+										break;
+									}
+								}
 							}
 							else if(action == 6)
 							{
 								std::cout << "Account Customers: "  << std::endl;
-								m_Accounts[acc_i] -> showCustomers();
+								dynamic_cast<JointAccount*>(m_accounts[acc_i]) -> showCustomers();
 							}
 							else
 							{
