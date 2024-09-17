@@ -2,20 +2,20 @@
 
 #pragma once
 #include "Transaction.h"
-#include "Transaction Mnager"
+#include "TransactionManager.h"
 #include <vector>
 
 class Account : public TransactionManager
 {
 public:
-	Account(int number, double balance, const std::string& type);
+	Account(double balance, const std::string& type);
 
-	void logTransaction(Account *from, Account *to, double amount, const std::string& type) override final;
-	void showTransactionHistory() const override final;
+	void logTransaction(Account *from, Account *to, double amount, const std::string& type);
+	void showTransactionHistory() const;
 
 	virtual void deposit(double amount) = 0;
 	virtual void withdraw(double amount) = 0;
-	virtual void transfer(Account& destination, double amount) = 0;
+	virtual void transfer(int id, double amount) = 0;
 	virtual void showBalance() const = 0;
 	
 	int getAccountNumber() const;

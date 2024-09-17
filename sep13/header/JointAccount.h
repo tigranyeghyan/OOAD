@@ -2,8 +2,9 @@
 
 #pragma once
 #include <vector>
+#include <string>
 #include "Account.h"
-#include "Transactions"
+#include "Transaction.h"
 #include "Customer.h"
 
 class JointAccount : public Account
@@ -13,15 +14,15 @@ public:
 	JointAccount(const JointAccount &name);
 	~JointAccount() = default;
 	
-	void addCustomer(Customer *customer);
+	void addCustomer(const std::string& name);
 	void showCustomers() const;
 
 	void deposit(double amount) override;
 	void withdraw(double amount) override;
-	void transfer(Account& destination, double amount) override;
+	void transfer(int id, double amount) override;
 	void showBalance() const override;
 	std::string getAccountType() const override;
 
 private:
-	std::vector<Customer*> jointOwners;
+	std::vector<std::string> jointOwners;
 };

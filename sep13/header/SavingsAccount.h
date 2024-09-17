@@ -19,7 +19,7 @@ public:
 
 	void deposit(double amount) override;
 	void withdraw(double amount) override;
-	void transfer(Account& destination, double amount) override;
+	void transfer(int id, double amount) override;
 	void showBalance() const override;
 	std::string getAccountType() const override;
 private:

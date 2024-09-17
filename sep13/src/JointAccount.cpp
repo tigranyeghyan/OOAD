@@ -18,9 +18,17 @@ JointAccount::JointAccount(const JointAccount &other)
 }
 
 
-void JointAccount::addCustomer(Customer *customer)
+void JointAccount::addCustomer(const std::string& customer_name)
 {
-	jointOwners.push_back(customer);
+	for(auto customer : customer_list)
+	{
+		if(customer -> getCustomerName() == customer_name)
+		{
+			jointOwners.push_back(customer);	
+			return; 
+		}
+	}
+	std::cout << "Customer Not Found" << std::endl;
 }
 
 void JointAccount::showCustomers() const
@@ -58,13 +66,18 @@ void JointAccount::withdraw(double amount)
 	}
 }
 
-void JointAccount::transfer(Account& destination, double amount)
-{
-	if(amount <= m_balance && amount > 0)
+void JointAccount::transfer(int id, double amount)
+{	
+	Account* dest = nullptr;
+	if(id < accounts.size())
 	{
-		logTransaction(this, &destination , amount, "Transfer");
-		destination.m_balance += amount;
-		destination.logTransaction(this, &destination, amount, "Transfer");
+		dest = accounts[id];
+	}
+	if(amount <= m_balance && amount > 0 && dest != nullptr)
+	{
+		logTransaction(this, dest , amount, "Transfer");
+		dest -> m_balance += amount;
+		dest -> logTransaction(this, dest, amount, "Transfer");
 		m_balance -= amount;
 	}
 	else

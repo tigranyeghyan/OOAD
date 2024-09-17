@@ -65,14 +65,19 @@ void SavingsAccount::withdraw(double amount)
 	}
 }
 
-void SavingsAccount::transfer(Account& destination, double amount)
+void SavingsAccount::transfer(int identity, double amount)
 {
-	if(amount <= m_balance + m_balance * interestRate / 100 && amount > 0)
+	Account* dest = nullptr;
+	if(id < accounts.size())
+	{
+		dest = accounts[id];
+	}
+	if(amount <= m_balance + m_balance * interestRate / 100 && amount > 0 && dest != nullptr)
 	{
 		m_balance += m_balance * interestRate / 100;		
-		logTransaction(this, &destination , amount, "Transfer");
-		destination.m_balance += amount;
-		destination.logTransaction(this, &destination, amount, "Transfer");
+		logTransaction(this, dest, amount, "Transfer");
+		dest -> m_balance += amount;
+		dest -> logTransaction(this, dest, amount, "Transfer");
 
 		m_balance -= amount;
 	}

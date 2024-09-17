@@ -1,17 +1,17 @@
 #include <iostream>
 #include "../header/Account.h"
 
-Account(double balance, const std::string& type) : m_accountNumber{0}, m_balance {balance}, m_accountType {type} 
+Account::Account(double balance, const std::string& type) : m_accountNumber{0}, m_balance {balance}, m_accountType {type} 
 {
 	int size = identity.size();
-	Account::identity.push_back(size);
+	identity.push_back(size);
 	m_accountNumber = size;
 }
 
 void Account::logTransaction(Account *from, Account *to, double amount, const std::string& type)
 {
-	Transaction transaction(from, to, amount, type);
-	m_accountTransactions.push_back(transaction);
+	Transaction * ptr = new Transaction(from, to, amount, type);
+	m_accountTransactions.push_back(ptr);
 }
 
 void Account::showTransactionHistory() const
@@ -23,7 +23,7 @@ void Account::showTransactionHistory() const
 	}
 }
 
-int getAccountNumber() const
+int Account::getAccountNumber() const
 {
 	return m_accountNumber;
 }
