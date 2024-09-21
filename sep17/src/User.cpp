@@ -3,22 +3,26 @@
 #include <limits>
 #include <vector>
 #include <memory>
-#include <../header/User.h>
 
+#include "../header/User.h"
+#include "../header/TextMessage.h"
+#include "../header/MultimediaMessage.h"
 
-User::User(std::string name, std::string contactInfo) : m_name {name}, m_contacInfo {contactInfo}
+User::User(std::string name, std::string contactInfo) : m_name {name}, m_contactInfo {contactInfo}
 {
 	std::cout << "User Created Successfully!" << std::endl;
 }
 
 
-void User::createConversation(const User& user)
+void User::createConversation(User *user)
 {
 	std::vector<User*> users;
 	users.push_back(this);
-	users.push_back(&user);
+	users.push_back(user);
 	std::cout << "Conversation Started:" << std::endl;
 	Conversation *ptr = new Conversation(users);
+	conversations.push_back(ptr);
+	user -> conversations.push_back(ptr);
 	ptr = nullptr;
 }
 
@@ -82,47 +86,70 @@ void User::sendMessage(Conversation *conversation)
 	std::cout << "1 --> Send Text Message:" << std::endl;
 	std::cout << "2 --> Multimedia:" << std::endl;
 	std::cin >> type;
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	switch (type)
+	
+	if(type == 1) 
+	{	
+		std::string content;
+		std::cout << "Enter text: ";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::getline(std::cin, content);
+		Message* ptr = new TextMessage(this, conversation, content);
+		conversation -> addMessage(getName(), ptr);
+		ptr = nullptr;
+	}
+	else if(type == 2)
 	{
-		case 1: 
-		{
-			
-			std::sting content;
-			std::cout << "Enter text: ";
-			std::getline(std::cin, content);
-			Message* ptr = new TextMessage(this, conversation, content);
-			conversation -> addMessage(getName(), ptr);
-			ptr = nullptr;
-		}
-		case 2:
-		{
-			std::string filePath;
-			std::string fileType;
-			std::cout << "Enter File Path: ";
-			std::getline(std::cin,filePath);
-			std::cout << "Enter File Type: ";
-			std::getline(std::cin, fileType);
-			Message *ptr = new MultimediaMessage(this, conversation, filePath, fileType);
-			conversation -> addMessage(getName(), ptr);
-		}
-		default:
-		{
-			std::cout << "Incorrect Option!" << std::endl;
-			break;
-		}
+		std::string filePath;
+		std::string fileType;
+		std::cout << "Enter File Path: ";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::getline(std::cin,filePath);
+		std::cout << "Enter File Type: ";
+		std::getline(std::cin, fileType);
+		Message *ptr = new MultimediaMessage(this, conversation, filePath, fileType);
+		conversation -> addMessage(getName(), ptr);
+	}
+	else
+	{
+		
+		std::cout << "Incorrect Option!" << std::endl;
 	}
 }
 
 
 void User::receiveMessage(Conversation *conversation)
-{
-	
+{	
+	conversation -> getNewMessages(this);
 }
 
 std::string User::getName() const
 {
-	retrun m_name;
+	return m_name;
 }
 
+
+bool User::viewAllConversations() const
+{
+	if(conversations.empty())
+	{
+		std::cout << "There are no conversations! Create Conversation And Try Again Later:"<< std::endl;
+		return false;
+	}
+	
+	for(int i = 0; i < conversations.size(); ++i)
+	{
+		std::cout << i + 1 << " --> " << conversations[i] -> showParticipants() << std::endl; 
+	}
+	return true;
+}
+
+Conversation * User::getConversation(size_t index)
+{
+	if(index >= conversations.size())
+	{
+		return nullptr;
+	}
+	return conversations[index];
+}

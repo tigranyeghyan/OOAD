@@ -10,7 +10,7 @@ void MultimediaMessage::displayContent() const
 	std::cout << m_sender -> getName() << " --> " << m_filePath << "\t" << m_mediaType << std::endl;
 }
 
-std::string MultiMediaMessage::getMessageType() const
+std::string MultimediaMessage::getMessageType() const
 {
 	return "media";
 }

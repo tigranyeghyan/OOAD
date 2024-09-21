@@ -1,4 +1,5 @@
 #include "../header/TextMessage.h"
+
 #include <iostream>
 #include <string>
 
@@ -6,7 +7,7 @@ TextMessage::TextMessage(User *sender, Conversation *conversation, const std::st
 
 void TextMessage::displayContent() const
 {
-	std::cout << sender -> getName() << " --> " << m_content << std::endl;
+	std::cout << m_sender -> getName() << " --> " << m_content << std::endl;
 }
 
 std::string TextMessage::getMessageType() const

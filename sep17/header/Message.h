@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
-#include "Conversation.h"
+
 #include "User.h"
+#include "Conversation.h"
 
 class Message
 {

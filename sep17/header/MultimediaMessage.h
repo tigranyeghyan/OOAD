@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <string>
+
 #include "Message.h"
 
 class MultimediaMessage : public Message
@@ -11,5 +12,5 @@ public:
 	std::string getMessageType() const override;
 private:
 	std::string m_filePath;
-	std::string m_mediaType
+	std::string m_mediaType;
 };
