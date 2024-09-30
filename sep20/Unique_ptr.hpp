@@ -37,7 +37,7 @@ template <typename T>
 Unique_ptr<T>& Unique_ptr<T>::operator=(Unique_ptr&& other) noexcept 
 {
     if (this != &other) 
-	{
+    {
         delete ptr;
         ptr = other.ptr;
         other.ptr = nullptr; 
