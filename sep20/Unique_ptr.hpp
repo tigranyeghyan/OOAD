@@ -61,6 +61,7 @@ T& Unique_ptr<T>::operator*() const
 }
 
 template <typename T>
-T* Unique_ptr<T>::operator->() const {
+T* Unique_ptr<T>::operator->() const 
+{
     return ptr;
 }
