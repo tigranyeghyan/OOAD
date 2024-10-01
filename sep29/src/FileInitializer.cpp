@@ -43,7 +43,7 @@ void FileInitializer::saveEmployeeState(Employee* ptr)
 	std::ofstream salaryFile("../db/salary.txt", std::ios::app);
 	if (salaryFile.is_open()) 
 	{
-		salaryFile << emp.getFinalSalary() << std::endl;
+		salaryFile << emp -> getFinalSalary() << std::endl;
 		salaryFile.close();
 	}
 	else 
