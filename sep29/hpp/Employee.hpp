@@ -9,12 +9,12 @@ public:
 	virtual void displayInfo() const = 0;
 	Employee(std::string name, double baseSalary, DepartmentType department);
 	
-	std::string getName() const;
 	double getBaseSalary() const;
+	std::string getName() const;
 	double getFinalSalary() const;
 	size_t getID() const;
-	DepartmentType getDepartment() const; 
 	std::string getDepartmentString() const;
+	DepartmentType getDepartment() const; 
 	
 protected:	
 	
