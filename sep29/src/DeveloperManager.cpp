@@ -24,14 +24,7 @@ size_t DeveloperManager::getDeveloperCount() const
 	return developerCount_;
 }
 
-std::vector<shared_ptr<Employee>> DeveloperManager::getDevelopers() const
+std::vector<std::shared_ptr<Employee>> DeveloperManager::getDevelopers() const
 {
 	return developers_;
-}
-
-double DeveloperManager::calculateSalary(shared_ptr<Employee> empl)
-{
-	const double bonus = 50.0;
-	double final_amount = empl -> getBaseSalary() + bonus * (empl -> getProjectCount());
-	empl -> setFinalSalary(final_amount); 
 }

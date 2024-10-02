@@ -2,8 +2,8 @@
 
 enum class DepartmentType
 {
-	Development;
-	HumanResources;
-	Finance;
-	Sales;
+	Development,
+	HumanResources,
+	Finance,
+	Sales
 };

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-void FileInitializer::saveEmployeeState(Employee* ptr)
+void FileInitializer::saveEmployeeState(Employee* employee)
 {
 	//name
 	std::ofstream nameFile("../db/name.txt", std::ios::app);
@@ -43,7 +43,7 @@ void FileInitializer::saveEmployeeState(Employee* ptr)
 	std::ofstream salaryFile("../db/salary.txt", std::ios::app);
 	if (salaryFile.is_open()) 
 	{
-		salaryFile << emp -> getFinalSalary() << std::endl;
+		salaryFile << employee -> getFinalSalary() << std::endl;
 		salaryFile.close();
 	}
 	else 
@@ -61,4 +61,10 @@ void FileInitializer::saveEmployeeState(Employee* ptr)
 	{
 		std::cerr << "Unable to open salary.txt for writing.\n";
 	}
+}
+
+
+void FileInitializer::setSpecificParameter(double specificParameter)
+{
+	
 }

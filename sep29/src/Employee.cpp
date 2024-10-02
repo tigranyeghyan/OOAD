@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-Employee::Employee(std::string name, double baseSalary, DepartmentType department) : name_{name}, baseSalary_ {baseSalary}, department_ {department}, id_ {EmployeeIdentity::getIdentity()}, finalSalary_ {baseSalary}
+Employee::Employee(std::string name, double baseSalary, DepartmentType department) : name_{name}, baseSalary_ {baseSalary}, department_ {department}, id_ {EmployeeIdentity::getIdentity()}, finalSalary_ {baseSalary}, salary{} 
 {
 	FileInitializer::saveEmployeeState(this);
 }
@@ -33,16 +33,8 @@ size_t Employee::getID() const
 
 DepartmentType Employee::getDepartment() const
 {
-	return department;
+	return department_;
 }
-
-void Employee::setFinalSalary(double amount)
-{
-	if(amount >= baseSalary_)
-	{
-		finalSalary_ = amount;
-	}
-}  
 
 std::string Employee::getDepartmentString() const 
 {

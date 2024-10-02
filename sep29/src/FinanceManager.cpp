@@ -5,16 +5,16 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "FinanceManager.hpp"
 
 FinanceManager::FinanceManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Finance}, AccountantCount_ {0}
 {
 }
 
-double FinanceManager::calculateSalary(shared_ptr<Employee> empl)
+void FinanceManager::setFinalSalary()
 {
-	const double commissionRate = 20.0;
-	double final_amount = empl -> getBaseSalary() + commissionRate * (empl -> getFinancialReport());
-	empl -> setFinalSalary(final_amount); 
+	const double bonus = 30.0;
+	finalSalary_ = salary_.calculateSalary(AccountantCount_, bonus, baseSalary_);
 }
 
 void FinanceManager::displayInfo() const
@@ -33,7 +33,7 @@ size_t FinanceManager::getAccountantCount() const
 }
 
 
-std::vector<shared_ptr<Employee>> FinanceManager::getAccountants() const
+std::vector<std::shared_ptr<Employee>> FinanceManager::getAccountants() const
 {
 	return accountants_;
 }

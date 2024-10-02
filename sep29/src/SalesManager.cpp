@@ -1,6 +1,5 @@
 #include "../hpp/SalesManager.hpp"
 #include "../hpp/DepartmentType.hpp"
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,20 +18,18 @@ void SalesManager::displayInfo() const
 	std::cout << "ID: " << id_ << std::endl;
 }
 
-std::vector<shared_ptr<Employee>> SalesManager::getSalesPersons() const
+void SalesManager::setFinalSalary()
+{
+	const double bonus = 30.0;
+	finalSalary_ = salary_.calculateSalary(SalesPersonCount_, bonus, baseSalary_);
+}
+
+std::vector<std::shared_ptr<Employee>> SalesManager::getSalesPersons() const
 {
 	return SalesPersons_;
 }
 
-size_t SalseManager::getSalesPersonCount() const
+size_t SalesManager::getSalesPersonCount() const
 {
 	return SalesPersonCount_;
-}
-
-double SalesManager::calculateSalary(shared_ptr<Employee> empl)
-{
-	const double commissionRate = 10.0;
-	double final_amount = empl -> getBaseSalary() + commissionRate * (empl -> getTotalSales());
-	empl -> setFinalSalary(final_amount);
-	return final_amount;
 }

@@ -1,5 +1,4 @@
 #include "../hpp/EmployeeIdentity.hpp"
-
 #include <iostream>
 
 EmployeeIdentity::EmployeeIdentity() 
