@@ -4,8 +4,7 @@
 #include <memory>
 #include <string>
 
-EmployeeManagmentSystem* EmployeeManagmentSystem::ptr = nullptr; 
-
+std::unique_ptr<EmployeeManagmentSystem> EmployeeManagmentSystem::ptr = nullptr;
 std::shared_ptr<FinanceManager> EmployeeManagmentSystem::finance_manager_ = nullptr;
 std::shared_ptr<HRManager> EmployeeManagmentSystem::hr_manager_ = nullptr;
 std::shared_ptr<SalesManager> EmployeeManagmentSystem::sales_manager_ = nullptr;
@@ -261,14 +260,7 @@ void EmployeeManagmentSystem::createManagmentSystem()
 {
     if(!ptr)
     {
-        ptr = new EmployeeManagmentSystem();
+        ptr.reset(new EmployeeManagmentSystem());
     }
 }
 
-EmployeeManagmentSystem::~EmployeeManagmentSystem()
-{
-    if (ptr)
-    {
-        delete ptr;
-    }
-}

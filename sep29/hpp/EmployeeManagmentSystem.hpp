@@ -18,10 +18,9 @@ public:
 	static void createManagmentSystem();
 private:
 	EmployeeManagmentSystem() = default;
-	static EmployeeManagmentSystem* ptr; 
+	static std::unique_ptr<EmployeeManagmentSystem> ptr; 
 	static std::shared_ptr<FinanceManager> finance_manager_;
 	static std::shared_ptr<HRManager> hr_manager_;
 	static std::shared_ptr<SalesManager> sales_manager_;
 	static std::shared_ptr<DeveloperManager> developer_manager_;
-	~EmployeeManagmentSystem();
 };
