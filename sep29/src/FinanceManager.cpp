@@ -4,9 +4,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "FinanceManager.hpp"
 
-FinanceManager::FinanceManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::Finance}, AccountantCount_ { 0 }
+FinanceManager::FinanceManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Finance}, AccountantCount_ { 0 }
 {
 }
 

@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-Accountant::Accountant(std::string name, double baseSalary = 1300.0) : Employee{name, baseSalary, DepartmentType::Finance}, financialReports_ {0} 
+Accountant::Accountant(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Finance}, financialReports_ {0} 
 {
 }
 

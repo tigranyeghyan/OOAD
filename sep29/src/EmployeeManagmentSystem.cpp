@@ -3,9 +3,13 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "EmployeeManagmentSystem.hpp"
 
-std::shared_ptr<EmployeeManagmentSystem> EmployeeManagmentSystem::ptr = nullptr;
+EmployeeManagmentSystem* EmployeeManagmentSystem::ptr = nullptr; 
+
+std::shared_ptr<FinanceManager> EmployeeManagmentSystem::finance_manager_ = nullptr;
+std::shared_ptr<HRManager> EmployeeManagmentSystem::hr_manager_ = nullptr;
+std::shared_ptr<SalesManager> EmployeeManagmentSystem::sales_manager_ = nullptr;
+std::shared_ptr<DeveloperManager> EmployeeManagmentSystem::developer_manager_ = nullptr;
 
 void EmployeeManagmentSystem::addEmployee(std::string name, DepartmentType department)
 {
@@ -257,9 +261,14 @@ void EmployeeManagmentSystem::createManagmentSystem()
 {
     if(!ptr)
     {
-        ptr = std::make_shared<EmployeeManagmentSystem>();
+        ptr = new EmployeeManagmentSystem();
     }
 }
 
-
-
+EmployeeManagmentSystem::~EmployeeManagmentSystem()
+{
+    if (ptr)
+    {
+        delete ptr;
+    }
+}

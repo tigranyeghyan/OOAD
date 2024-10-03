@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-SalesPerson::SalesPerson(std::string name, double baseSalary = 1200.0) : Employee{name, baseSalary, DepartmentType::Sales}, totalSales_ {0.0} 
+SalesPerson::SalesPerson(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Sales}, totalSales_ {0.0} 
 {
 }
 

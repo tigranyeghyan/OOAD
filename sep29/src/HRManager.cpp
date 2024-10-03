@@ -4,9 +4,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "HRManager.hpp"
 
-HRManager::HRManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::HumanResources}, HRsCount_ { 0 }
+HRManager::HRManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::HumanResources}, HRsCount_ { 0 }
 {
 }
 

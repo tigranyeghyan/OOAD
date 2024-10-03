@@ -1,13 +1,8 @@
 #include "../hpp/EmployeeIdentity.hpp"
 #include <iostream>
 
-EmployeeIdentity::EmployeeIdentity() 
-{
-}
-
-size_t EmployeeIdentity::identity = 0;
-
 size_t EmployeeIdentity::getIdentity() 
 {
+	static size_t identity = 0;
 	return ++identity;
 }

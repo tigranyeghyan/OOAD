@@ -1,10 +1,9 @@
 #pragma once
-
+#include <stddef.h>
 class EmployeeIdentity
 {
 public:
 	static size_t getIdentity();
 private:
-	EmployeeIdentity();
-	static size_t identity;
+	EmployeeIdentity() = default;
 };

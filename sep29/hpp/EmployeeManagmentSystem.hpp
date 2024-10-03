@@ -16,12 +16,12 @@ public:
 	static void displayAllEmployeesByDepartment(DepartmentType department);
 	static void calculateTotalSalaryByDepartment(DepartmentType department);
 	static void createManagmentSystem();
-private:	
-	EmployeeManagmentSystem();
-	static std::shared_ptr<EmployeeManagmentSystem> ptr;
+private:
+	EmployeeManagmentSystem() = default;
+	static EmployeeManagmentSystem* ptr; 
 	static std::shared_ptr<FinanceManager> finance_manager_;
 	static std::shared_ptr<HRManager> hr_manager_;
 	static std::shared_ptr<SalesManager> sales_manager_;
 	static std::shared_ptr<DeveloperManager> developer_manager_;
+	~EmployeeManagmentSystem();
 };
-

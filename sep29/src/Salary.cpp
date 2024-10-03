@@ -1,4 +1,4 @@
-#include "Salary.hpp"
+#include "../hpp/Salary.hpp"
 #include <iostream>
 
 double Salary::calculateSalary(size_t spec, double bonus, double baseSalary) const

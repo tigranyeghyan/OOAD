@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "SalesManager.hpp"
 
-SalesManager::SalesManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::Sales}, SalesPersonCount_ { 0 }
+
+SalesManager::SalesManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Sales}, SalesPersonCount_ { 0 }
 {
 }
 

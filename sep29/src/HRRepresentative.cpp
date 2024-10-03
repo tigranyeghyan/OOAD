@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-HRRepresentative::HRRepresentative(std::string name, double baseSalary = 1000.0) : Employee{name, baseSalary, DepartmentType::HumanResources}, employeesManaged_ {0}
+HRRepresentative::HRRepresentative(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::HumanResources}, employeesManaged_ {0}
 {
 }
 

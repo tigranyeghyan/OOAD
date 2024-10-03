@@ -4,9 +4,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "DeveloperManager.hpp"
 
-DeveloperManager::DeveloperManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::Development}, developerCount_ { 0 }
+DeveloperManager::DeveloperManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Development}, developerCount_ { 0 }
 {
 }
 
