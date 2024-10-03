@@ -6,6 +6,7 @@
 #include "SalesManager.hpp"
 #include "DeveloperManager.hpp"
 #include <memory>
+#include <string>
 
 class EmployeeManagmentSystem
 {
@@ -17,10 +18,10 @@ public:
 	static void createManagmentSystem();
 private:	
 	EmployeeManagmentSystem();
-	static EmployeeManagmentSystem* ptr;	
+	static std::shared_ptr<EmployeeManagmentSystem> ptr;
 	static std::shared_ptr<FinanceManager> finance_manager_;
 	static std::shared_ptr<HRManager> hr_manager_;
 	static std::shared_ptr<SalesManager> sales_manager_;
 	static std::shared_ptr<DeveloperManager> developer_manager_;
-
 };
+

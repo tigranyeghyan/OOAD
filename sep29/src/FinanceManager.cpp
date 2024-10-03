@@ -1,13 +1,12 @@
 #include "../hpp/FinanceManager.hpp"
 #include "../hpp/DepartmentType.hpp"
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 #include "FinanceManager.hpp"
 
-FinanceManager::FinanceManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Finance}, AccountantCount_ {0}
+FinanceManager::FinanceManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::Finance}, AccountantCount_ { 0 }
 {
 }
 
@@ -32,8 +31,19 @@ size_t FinanceManager::getAccountantCount() const
 	return AccountantCount_;
 }
 
+void FinanceManager::addAccountant(std::shared_ptr<Accountant> newAccountant)
+{
+	accountants_.push_back(std::move(newAccountant));
+    AccountantCount_ = accountants_.size();
+}
 
-std::vector<std::shared_ptr<Employee>> FinanceManager::getAccountants() const
+std::vector<std::shared_ptr<Accountant>> FinanceManager::getAccountants() const
 {
 	return accountants_;
+}
+
+void FinanceManager::removeEmployee(size_t id)
+{
+	accountants_.erase(accountants_.begin() + id);
+	--AccountantCount_;
 }

@@ -1,13 +1,12 @@
 #include "../hpp/HRManager.hpp"
 #include "../hpp/DepartmentType.hpp"
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 #include "HRManager.hpp"
 
-HRManager::HRManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::HumanResources}, HRsCount_ {0}
+HRManager::HRManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::HumanResources}, HRsCount_ { 0 }
 {
 }
 
@@ -31,7 +30,19 @@ size_t HRManager::getHRsCount() const
 	return HRsCount_;
 }
 
-std::vector<std::shared_ptr<Employee>> HRManager::getHRs() const
+void HRManager::addHR(std::shared_ptr<HRRepresentative> newHR)
+{
+	HRs_.push_back(std::move(newHR));
+    HRsCount_ = HRs_.size();
+}
+
+std::vector<std::shared_ptr<HRRepresentative>> HRManager::getHRs() const
 {
 	return HRs_;
+}
+
+void HRManager::removeEmployee(size_t id)
+{
+	HRs_.erase(HRs_.begin() + id);
+	--HRsCount_;
 }

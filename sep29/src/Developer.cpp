@@ -3,9 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "Developer.hpp"
 
-Developer::Developer(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Development}, projects_ {0} 
+Developer::Developer(std::string name, double baseSalary = 1500.0) : Employee{name, baseSalary, DepartmentType::Development}, projects_ {0} 
 {
 }
 

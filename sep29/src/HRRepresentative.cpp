@@ -1,11 +1,10 @@
 #include "../hpp/HRRepresentative.hpp"
 #include "../hpp/DepartmentType.hpp"
-
 #include <iostream>
 #include <string>
-#include "HRRepresentative.hpp"
 
-HRRepresentative::HRRepresentative(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::HumanResources}, employeesManaged_ {0}{
+HRRepresentative::HRRepresentative(std::string name, double baseSalary = 1000.0) : Employee{name, baseSalary, DepartmentType::HumanResources}, employeesManaged_ {0}
+{
 }
 
 void HRRepresentative::displayInfo() const

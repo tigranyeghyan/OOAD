@@ -1,13 +1,11 @@
 #pragma once 
-
 #include <string>
-
 #include "Employee.hpp"
 
 class HRRepresentative : public Employee
 {
 public:
-	HRRepresentative(std::string name, double baseSalary);
+	HRRepresentative(std::string name, double baseSalary = 1000);
 	void displayInfo() const override;
 	void setFinalSalary() override;
 	void addEmployee();

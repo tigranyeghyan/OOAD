@@ -4,7 +4,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "FileInitializer.hpp"
 
 void FileInitializer::saveEmployeeState(Employee *employee)
 {

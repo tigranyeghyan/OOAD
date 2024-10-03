@@ -1,24 +1,22 @@
 #pragma once
-
 #include "Employee.hpp"
-
+#include "Accountant.hpp"
+#include "Manager.hpp"
 #include <string>
 #include <vector>
 #include <memory>
 
-class FinanceManager : public Employee
+class FinanceManager : public Employee, public Manager
 {
 public:
-	FinanceManager(std::string name, double baseSalary);
+	void removeEmployee(size_t id) override;
+	FinanceManager(std::string name, double baseSalary = 2000.0);
 	void setFinalSalary() override;
 	void displayInfo() const override;
-	void setFinalSalary() override;
 	size_t getAccountantCount() const;
-	std::vector<std::shared_ptr<Employee>> getAccountants() const;
-
+	void addAccountant(std::shared_ptr<Accountant> newAccountant);
+	std::vector<std::shared_ptr<Accountant>> getAccountants() const;
 private:
-
-	std::vector<std::shared_ptr<Employee>> accountants_;
+	std::vector<std::shared_ptr<Accountant>> accountants_;
 	size_t AccountantCount_;
-
 };

@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "SalesManager.hpp"
 
-SalesManager::SalesManager(std::string name, double baseSalary) : Employee{name, baseSalary, DepartmentType::Sales}, SalesPersonCount_ {0}
+SalesManager::SalesManager(std::string name, double baseSalary = 2000.0) : Employee{name, baseSalary, DepartmentType::Sales}, SalesPersonCount_ { 0 }
 {
 }
 
@@ -24,7 +25,7 @@ void SalesManager::setFinalSalary()
 	finalSalary_ = salary_.calculateSalary(SalesPersonCount_, bonus, baseSalary_);
 }
 
-std::vector<std::shared_ptr<Employee>> SalesManager::getSalesPersons() const
+std::vector<std::shared_ptr<SalesPerson>> SalesManager::getSalesPersons() const
 {
 	return SalesPersons_;
 }
@@ -32,4 +33,16 @@ std::vector<std::shared_ptr<Employee>> SalesManager::getSalesPersons() const
 size_t SalesManager::getSalesPersonCount() const
 {
 	return SalesPersonCount_;
+}
+
+void SalesManager::addSalesPerson(std::shared_ptr<SalesPerson> newSalesPerson)
+{
+	SalesPersons_.push_back(std::move(newSalesPerson));
+	SalesPersonCount_ = SalesPersons_.size();
+}
+
+void SalesManager::removeEmployee(size_t id)
+{
+	SalesPersons_.erase(SalesPersons_.begin() + id);
+	--SalesPersonCount_;
 }
