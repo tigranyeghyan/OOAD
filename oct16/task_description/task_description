@@ -1,0 +1,36 @@
+https://docs.google.com/document/d/1lRNU7lRUuGgb3cA3KC405GvCZylMfTYYmyL_oGyiHzo/edit?tab=t.0
+
+
+Task: Coffee Shop Beverage Customization System Using the Decorator Pattern
+Objective:
+Design a C++ program for a coffee shop where customers can customize their beverages by adding various ingredients and toppings. The system should allow for dynamic combinations of add-ons (such as milk, sugar, whipped cream, etc.) using the Decorator Design Pattern.
+Problem Statement:
+You are tasked with building a coffee shop beverage customization system where customers can order a base beverage (e.g., coffee, tea, etc.) and then customize it with multiple add-ons. Each add-on will modify the beverage’s description and price. Your implementation should allow for flexible and dynamic customization of beverages.
+
+Requirements:
+Base Beverage Class:
+Create an abstract Beverage class that has two pure virtual functions:
+std::string getDescription() const: Returns the description of the beverage.
+double cost() const: Returns the total cost of the beverage.
+Concrete Beverages:
+Implement concrete subclasses of Beverage for various drinks such as:
+Coffee
+Tea
+Espresso
+Each beverage should have its own cost and description.
+Add-on Decorators:
+Create an abstract AddOnDecorator class that inherits from Beverage. This will serve as the base class for all add-ons.
+The decorator class should also implement getDescription() and cost().
+Concrete Add-ons:
+Implement concrete add-on decorators that wrap around a Beverage object, modifying the description and cost. Examples of add-ons include:
+Milk
+Sugar
+WhippedCream
+Mocha
+Caramel
+Each add-on should incrementally modify the beverage’s cost and append its name to the beverage description.
+Dynamic Beverage Customization:
+Ensure that multiple add-ons can be applied to a single beverage in any order, creating dynamic combinations such as:
+Coffee with Milk and Sugar
+Espresso with Mocha, Caramel, and Whipped Cream
+
