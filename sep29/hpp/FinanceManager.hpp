@@ -20,3 +20,5 @@ private:
 	std::vector<std::shared_ptr<Accountant>> accountants_;
 	size_t AccountantCount_;
 };
+
+

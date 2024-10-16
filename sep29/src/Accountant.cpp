@@ -31,3 +31,5 @@ size_t Accountant::getFinancialReport() const
 {
 	return financialReports_;
 }
+
+

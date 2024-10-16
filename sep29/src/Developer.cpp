@@ -32,3 +32,4 @@ size_t Developer::getProjectCount() const
 {
 	return projects_;
 }
+

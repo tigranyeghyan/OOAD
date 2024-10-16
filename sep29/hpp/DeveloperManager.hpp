@@ -21,3 +21,5 @@ private:
 	std::vector<std::shared_ptr<Developer>> developers_;
 	size_t developerCount_;
 };
+
+

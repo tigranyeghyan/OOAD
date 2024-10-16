@@ -45,3 +45,5 @@ void HRManager::removeEmployee(size_t id)
 	HRs_.erase(HRs_.begin() + id);
 	--HRsCount_;
 }
+
+

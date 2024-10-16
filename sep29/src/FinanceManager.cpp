@@ -46,3 +46,4 @@ void FinanceManager::removeEmployee(size_t id)
 	accountants_.erase(accountants_.begin() + id);
 	--AccountantCount_;
 }
+

@@ -45,3 +45,4 @@ void DeveloperManager::removeEmployee(size_t id)
 	developers_.erase(developers_.begin() + id);
 	--developerCount_;
 }
+

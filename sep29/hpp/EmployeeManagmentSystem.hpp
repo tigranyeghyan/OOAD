@@ -24,3 +24,4 @@ private:
 	static std::shared_ptr<SalesManager> sales_manager_;
 	static std::shared_ptr<DeveloperManager> developer_manager_;
 };
+

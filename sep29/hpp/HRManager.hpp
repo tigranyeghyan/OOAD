@@ -20,3 +20,6 @@ private:
 	std::vector<std::shared_ptr<HRRepresentative>> HRs_; 
 	size_t HRsCount_;
 };
+
+
+

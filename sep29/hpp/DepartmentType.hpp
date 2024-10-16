@@ -7,3 +7,4 @@ enum class DepartmentType
 	Finance,
 	Sales
 };
+

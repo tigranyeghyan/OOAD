@@ -34,3 +34,4 @@ double SalesPerson::getTotalSales() const
 {
 	return totalSales_;
 }
+

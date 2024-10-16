@@ -10,3 +10,4 @@ double Salary::calculateSalary(double spec, double bonus, double baseSalary) con
 {
     return baseSalary + bonus * spec;
 }
+

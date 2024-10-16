@@ -30,3 +30,4 @@ int main()
     EmployeeManagmentSystem::calculateTotalSalaryByDepartment(DepartmentType::Development);
     return 0;
 }
+

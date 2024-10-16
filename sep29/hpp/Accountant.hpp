@@ -13,3 +13,4 @@ public:
 private:
 	size_t financialReports_;
 };
+

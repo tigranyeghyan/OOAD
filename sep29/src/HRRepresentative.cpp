@@ -31,3 +31,5 @@ size_t HRRepresentative::getEmployeesManaged() const
 {
 	return employeesManaged_;
 }
+
+
