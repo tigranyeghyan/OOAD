@@ -11,7 +11,8 @@ public:
 	static void showEmployeeByID(size_t id);
 	static void showEmployeesByName(std::string name);
 	static void showEmployeesBySalaryRange(double from, double to);
-	static void showEmployeeByDepartment(DepartmentType department);	
+	static void showEmployeeByDepartment(DepartmentType department);
+	static void clearOldData();	
 private:
 	FileInitializer() = default;
 };

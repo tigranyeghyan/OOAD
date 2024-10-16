@@ -403,3 +403,22 @@ void FileInitializer::showEmployeeByDepartment(DepartmentType department)
     file.close();
 }
 
+void FileInitializer::clearOldData()
+{
+    std::ofstream file;
+    
+    file.open("../db/name.txt", std::ios::out);
+    file.close();
+
+    file.open("../db/department.txt", std::ios::out);
+    file.close();
+
+    file.open("../db/identity.txt", std::ios::out);
+    file.close();
+
+    file.open("../db/salary.txt", std::ios::out);
+    file.close();
+
+    file.open("../db/specific.txt", std::ios::out);
+    file.close();
+}
