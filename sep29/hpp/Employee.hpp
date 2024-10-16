@@ -23,3 +23,5 @@ protected:
 	double finalSalary_;
 	const Salary salary_;
 };
+
+

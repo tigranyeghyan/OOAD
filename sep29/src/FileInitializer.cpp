@@ -422,3 +422,4 @@ void FileInitializer::clearOldData()
     file.open("../db/specific.txt", std::ios::out);
     file.close();
 }
+
