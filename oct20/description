@@ -1,0 +1,44 @@
+https://docs.google.com/document/d/14PdY2vd8GN1OmIr0DLdufIpjhzYxbdXedglJb1_etqo/edit?tab=t.0#heading=h.e0jyooy5o9u1
+
+Task: Real-Time Stock Trading System with Dynamic Market Simulation
+Build a real-time stock trading system that models the stock market, including price fluctuations, dynamic market events (e.g., earnings reports, stock splits), and client reactions (e.g., traders, algorithmic bots, mobile apps). The stock market acts as the subject, while multiple types of observers (brokers, trading apps, AI trading bots) respond to market updates. Observers can subscribe to specific stocks or entire industry sectors. The system should also simulate dynamic market behaviors and trading strategies.
+Requirements:
+Market Simulation and Stock Exchange:
+The StockExchange class manages multiple Stock objects and handles real-time price fluctuations based on internal factors such as demand and supply.
+Implement methods for simulating market events like earnings reports, stock splits, or quarterly results, which can affect stock prices.
+Simulate different market conditions, such as bullish, bearish, or volatile markets.
+Observer Types: Implement multiple observers with distinct behaviors:
+Broker: Brokers receive real-time stock updates and execute trades based on their strategies. They can subscribe to specific stocks or sectors. Their strategy could be to buy when a stock drops below a certain threshold or sell when it rises above a defined level.
+MobileApp: The mobile trading app observer notifies users about stock price changes and trade execution. Users can set custom notifications for specific stocks or price thresholds.
+AI Trading Bot: The AI bot makes automated trades based on algorithmic strategies like high-frequency trading, moving averages, or other technical indicators. It responds to rapid market fluctuations and adjusts its trades accordingly.
+Multiple Notification Types: The StockExchange sends different types of notifications, depending on the context:
+Price updates: These are frequent and sent to observers based on their subscription criteria.
+Market event notifications: Major events like earnings reports or stock splits should trigger notifications for relevant observers.
+
+
+
+
+1. StockExchange Class
+This class manages multiple stocks (e.g., Apple, Google) and keeps track of their prices.
+You will write code that simulates stock price changes over time.
+The stock prices will change based on different factors (like supply and demand).
+There will be events (e.g., earnings reports or stock splits) that cause bigger changes in prices.
+2. Observers (Users)
+You will create three types of users that react to stock price changes:
+Broker:
+Brokers buy and sell stocks based on their strategy.
+For example, a broker could be set to buy when the stock price drops below a certain amount or sell when it goes above a certain amount.
+Mobile Trading App:
+This app will notify users about stock price changes. Users can set custom alerts for when a stock reaches a certain price.
+AI Trading Bot:
+This bot makes automated trades using algorithms (like buying and selling quickly based on price movements).
+You can give it a strategy, like buying when the price is lower than the average of the past 10 prices.
+3. Notifications
+Price Updates: The stock exchange will send frequent updates to the users based on their subscriptions. For example, a broker could subscribe to updates on Google stock.
+Market Event Notifications: The stock exchange will send special notifications when major events like earnings reports or stock splits happen. This will affect the prices of certain stocks, and users will react.
+
+Guidelines
+Use the Observer Pattern so that the StockExchange can notify users when stock prices change or when special events happen.
+Simulate stock price changes over time and include events like earnings reports or stock splits.
+Use the Strategy Pattern to define different behaviors for brokers and AI bots. For example, you can create a strategy where a broker buys when a stock falls below a certain price.
+
